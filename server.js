@@ -55,9 +55,6 @@ app.delete('/api/notes/:id', (req, res) => {
 
     // send that removed note object back to user
     res.json(newDb)
-
-    //Redirects user to new terminal API
-    res.redirect('/api/notes')
 })
 
 //HTML Routes
