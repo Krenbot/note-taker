@@ -15,8 +15,14 @@ app.use(express.json())
 //API Routes
 // GET /api/notes should read the db.json file and return all saved notes as JSON.
 app.get('/api/notes', (req, res) => {
-    res.json(db)
+    fs.readFile('./db/db.json', (err, data) => {
+        if (err) throw err;
+        let dbData = JSON.parse(data);
+        console.log(dbData);
+        res.json(dbData)
+    });   
 })
+
 
 //POST 
 ///api/notes receives a new note to save on the request body and add it to db.json, then returns new note to the client.
@@ -39,14 +45,14 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
     const newDb = db.filter((note) =>
         note.id !== req.params.id)
-    
-     // update the db.json file to reflect the modified notes array
+
+    // update the db.json file to reflect the modified notes array
     fs.writeFileSync('./db/db.json', JSON.stringify(newDb))
-    
+
     // send that removed note object back to user
     res.json(newDb)
-    
-    // res.sendFile(path.join(__dirname, './db/db.json'))
+
+    res.redirect('/api/notes')
 })
 
 //HTML Routes
