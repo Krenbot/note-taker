@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const app = express()
-const PORT = process.env.port || 3000
+const PORT = process.env.PORT || 3000
 const db = require('./db/db.json')
 
 //Allows all notes to have a unique ID
@@ -19,7 +19,7 @@ app.get('/api/notes', (req, res) => {
         ///error logging
         if (err) throw err;
         let dbData = JSON.parse(data);
-        console.log(dbData);
+        //Returns new database
         res.json(dbData)
     });   
 })
