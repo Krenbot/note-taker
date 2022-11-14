@@ -16,6 +16,7 @@ app.use(express.json())
 // GET /api/notes should read the db.json file and return all saved notes as JSON.
 app.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
+        ///error logging
         if (err) throw err;
         let dbData = JSON.parse(data);
         console.log(dbData);
@@ -28,12 +29,16 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
     //grabs notes from body of request
     const newNote = req.body
+
     //gives each note a random ID
     newNote.id = uuidv4()
+
     //adds the note object to the array
     db.push(newNote)
+
     //update the json file with the new object
     fs.writeFileSync('./db/db.json', JSON.stringify(db))
+
     //responds with the note object used
     res.json(db)
 })
@@ -51,6 +56,7 @@ app.delete('/api/notes/:id', (req, res) => {
     // send that removed note object back to user
     res.json(newDb)
 
+    //Redirects user to new terminal API
     res.redirect('/api/notes')
 })
 
