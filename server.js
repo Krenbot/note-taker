@@ -23,7 +23,6 @@ app.get('/api/notes', (req, res) => {
     });   
 })
 
-
 //POST 
 ///api/notes receives a new note to save on the request body and add it to db.json, then returns new note to the client.
 app.post('/api/notes', (req, res) => {
