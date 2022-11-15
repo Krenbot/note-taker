@@ -70,7 +70,7 @@ app.get('/notes', (req, res) => {
 
 //Wildcard Route
 app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname, './public/index.html'))
+    res.sendfile(path.join(__dirname, './public/index/'))
 })
 
 //App listens with front end on this port
