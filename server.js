@@ -54,7 +54,7 @@ app.delete('/api/notes/:id', (req, res) => {
     fs.writeFileSync('./db/db.json', JSON.stringify(newDb))
 
     // send that removed note object back to user
-    res.json(newDb)
+    readFile.json(newDb)
 })
 
 //HTML Routes
